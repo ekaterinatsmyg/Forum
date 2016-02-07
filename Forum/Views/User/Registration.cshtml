@@ -1,0 +1,103 @@
+﻿@model Forum.Models.RegistrationViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+
+</head>
+<body>
+    @Html.Partial("~/Views/shared/_HeadViewPartial.cshtml")
+    <div class="modal-dialog container-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="entryModalLabel">Вход</h4>
+            </div>
+            @using (Html.BeginForm("Registration", "User"))
+            {
+                
+                <ul class="nav nav-tabs">
+                    <li id="required_tab" role="presentation" class="active"><a href="#" >Обязательные поля</a></li>
+                    <li id="not_required_tab" role="presentation"><a href="#" >Необязательные поля</a></li>
+
+                </ul>
+                <div id="required_fields">
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-error" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "email" })
+                            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-error" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Login)
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @id = "login" })
+                            @Html.ValidationMessageFor(model => model.Login, null, new { @class = "text-error", @id = "login_error" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "password" })
+                            @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-error", @id = "password_error" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @id = "conf_password" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "text-error", @id = "conf_password_error" })
+                        </div>
+                    </div>
+
+                  
+                    
+                </div>
+                </div>
+                
+                <div id="not_required_fiels" style="display:none;">
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name)
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Surname)
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Surname)
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <p class="text-error" style="display:none;" id="error_registration">Заполните все поля либо исправьте ошибки!</p>
+                <div class="modal-footer">
+                    <input type="button" value="Далее" class="btn btn-default" id="next_step_register"onclick="checkRequiredRegisterField();" />
+                    <input type="submit" id="registration" style="display:none;" class="btn btn-info" value="Зарегестрироваться" />
+                </div>
+
+            }
+
+        </div>
+
+</body>
+</html>

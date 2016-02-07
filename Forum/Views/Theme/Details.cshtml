@@ -1,0 +1,33 @@
+﻿@model Forum.Models.ThemeViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+
+</head>
+<body>
+    @Html.Partial("~/Views/shared/_HeadViewPartial.cshtml")
+ 
+    <div class="jumbotron">
+        <div class="container">
+            <h1>@Model.Name</h1>   <hr>         
+            <p> @Model.Content</p>
+            <hr>
+        </div>
+    </div>
+
+        @Html.Action("MessagesOfTheme", new { controller = "Message", themeId = Model.Id })
+        @if (Request.IsAuthenticated)
+        {
+            @Html.Action("ResponseToTheme", new { controller = "Message", themeId = Model.Id })
+        }
+
+</body>
+</html>

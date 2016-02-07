@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Forum.Models.ThemeViewModel>
+
+@{
+    Layout = null;
+}
+
+    <table id="sectionThemes" class="table table-hover table-bordered myContainer">
+        <thead>
+            <tr>
+                <th width="70%">Тема</th>
+                <th width="10%">Кол-во просомтров</th>
+                <th>Дата создания</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   @Html.ActionLink(item.Name, "Details","Theme", new { id = item.Id })
+                    <br /><blockquote> @item.Content</blockquote>
+                </td>
+                <td> @item.CountViews</td>
+                <td> @item.DatePublication</td>
+            </tr>
+        }
+
+
+    </table>
+
+
+

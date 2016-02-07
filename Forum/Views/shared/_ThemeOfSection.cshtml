@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Forum.Models.ThemeViewModel>
+
+<br/>
+<a class="btn btn-link" role="button" data-toggle="collapse" href="#collapseTheme_@ViewBag.sectionId" aria-expanded="false" aria-controls="collapseTheme">
+    Просмотреть темы
+</a>
+
+
+    <div class="collapse" id="collapseTheme_@ViewBag.sectionId">
+    <div class="well">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li> @Html.ActionLink(item.Name, "Details", new { id = item.Id })</li>
+            }
+        </ul>
+    </div>
+</div>
+

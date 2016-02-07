@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @if((Request.IsAuthenticated && !Convert.ToBoolean( Profile.GetPropertyValue("IsBlocked")) || !Request.IsAuthenticated))
+    {        
+    <div>
+        @Html.Partial("~/Views/shared/_HeadViewPartial.cshtml")
+    </div>
+        
+        <div>
+            @Html.Action("AllSections", "Section")
+        </div>
+            
+    }
+
+
+    @if (Request.IsAuthenticated &&  Convert.ToBoolean(Profile.GetPropertyValue("IsBlocked")))
+    {
+        <h1>Sorry, you are blocked</h1>
+    }
+</body>
+
+
+
+</html>

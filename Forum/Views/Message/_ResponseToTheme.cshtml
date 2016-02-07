@@ -1,0 +1,27 @@
+﻿@model Forum.Models.MessageViewModel
+
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("ResponseToTheme", "Message", new { themeId = ViewBag.ThemeId }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "messagesOfTheme",
+    OnSuccess = "OnSuccessAddMessageAjax"
+}, new { @class = "myContainer"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Content, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control text-area-size-edit-message" })
+            @Html.ValidationMessageFor(model => model.Content, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+ <input type="submit" class="btn btn-default btn-info" value="Ответить" />
+}
+

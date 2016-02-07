@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Moveax.Mvc.ErrorHandler</id>
+    <version>1.2.3.0</version>
+    <title>Moveax.Mvc.ErrorHandler</title>
+    <authors>Andrey Veselov</authors>
+    <owners>Andrey Veselov</owners>
+    <licenseUrl>http://mvcerrorhandler.codeplex.com/license</licenseUrl>
+    <projectUrl>http://mvcerrorhandler.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple library that allows you to easily create error pages for common HTTP error and application exceptions.</description>
+    <copyright>Copyright (C) 2012-2013 Andrey Veselov</copyright>
+    <tags>ASP.NET MVC Error handling exceptions</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.30506.0" />
+    </dependencies>
+  </metadata>
+</package>

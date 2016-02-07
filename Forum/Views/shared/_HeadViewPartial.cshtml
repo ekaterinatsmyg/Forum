@@ -1,0 +1,68 @@
+﻿@Styles.Render("~/content/css")
+@Scripts.Render("~/js")
+
+
+
+    <div class="navbar navbar-default navbar-fixed-top navbar-static-top ">
+        <div class="navbar-inner my-theme-navbar">
+            <a class="brand" href="/Home/Index">Forum</a>
+            @if (User.IsInRole("admin"))
+            {
+                <div class="pull-left">
+                    <ul class="nav nav-tabs">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Действия с разделами<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-toggle="modal" data-target="#addSection">Добавить раздел</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav nav-tabs">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Действия с пользователями<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#unblockUser">Разблокировать пользователя</a>
+                                </li>
+                                <li><a href="#" data-toggle="modal" data-target="#blockUser">Заблокировать пользователя</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            }
+
+            <div class="pull-right">
+                @Html.Action("Index", "Search")
+                <ul class="nav nav-tabs">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Личный кабинет<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>
+
+                                    @Html.ActionLink("Выйти", "LogOff", "User")
+
+                                </li>
+                            }
+                            else
+                            {
+                                <li> @Html.ActionLink("Войти", "Login", new { controller = "User" }, new { @class = "" })</li>
+                            }
+                            <li><a href="~/User/Registration">Регистрация</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    @if (User.IsInRole("admin"))
+    {
+        @Html.Action("AddSection", "Section")
+        @Html.Action("BlockUser", "User")
+        @Html.Action("UnBlockUser", "User")
+    }

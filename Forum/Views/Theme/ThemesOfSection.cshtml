@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ThemesOfSection</title>
+</head>
+<body>
+    <div>
+        @Html.Partial("~/Views/shared/_HeadViewPartial.cshtml")
+
+        @Html.Action("ThemesOfSectionTable", "Theme", new { sectionId = Request.Params["sectionId"] })
+    <table class="myContainer">
+        <tr style="border:0px;">
+            <td>
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.Action("Create", "Theme", new { sectionId = Request.Params["sectionId"] })
+                    
+                }
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>

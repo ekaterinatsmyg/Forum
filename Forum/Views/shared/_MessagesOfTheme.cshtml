@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Forum.Models.MessageViewModel>
+
+<div id="messagesOfTheme">
+<table class="table table-hover myContainer" >
+@foreach (var message in Model)
+{
+    <tr>
+        <td>
+            <p id="message_@message.Id"><b>@message.Content</b></p>
+            @if (User.IsInRole("admin") || (Request.IsAuthenticated && (Convert.ToInt32(Profile.GetPropertyValue("Id")) == message.SenderId)))
+            {
+
+                if (Convert.ToInt32(Profile.GetPropertyValue("Id")) == message.SenderId)
+                {
+                    @Html.Action("UpdateMessages", "Message", new { messageId = message.Id , themeId = message.ThemeId })
+                }
+            }
+            <p class="text-right">@message.DatePublication</p>
+            <p class="text-right"><i>@Html.Action("GetSender", "User", new { senderId = message.SenderId })</i></p>
+</td>
+        <td>
+            @if (User.IsInRole("admin") || (Request.IsAuthenticated && (Convert.ToInt32(Profile.GetPropertyValue("Id")) == message.SenderId)))
+            {
+                <button class="btn btn-info" onclick="showHideEditMessage(@message.Id)">✎</button>
+                @Ajax.ActionLink("×", "DeleteMessage", "Message", new { messageId = message.Id, themeId = message.ThemeId }, new AjaxOptions { OnSuccess = "DeleteMessageAjax", HttpMethod = "Get", UpdateTargetId = "messagesOfTheme" }, new { @class = "btn btn-danger" })
+            }
+        </td>
+    </tr>
+        
+     
+}
+    </table>
+    </div>

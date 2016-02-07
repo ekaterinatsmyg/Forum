@@ -1,0 +1,31 @@
+  body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+
+  .myContainer {
+      margin:auto;
+      width: 70%;
+  }
+
+  .myContainer tr{
+      height:50px;
+  }
+
+  .text-strong{
+      font-weight : 600 ;
+      font-size : 15px;
+  }
+
+  .container-login{
+      margin:auto;
+      width:50%;
+  }
+
+  .text-area-size{
+      margin: 0px 0px 10px; width: 553px; height: 89px;
+  }
+
+  .text-area-size-edit-message{
+    margin: 0px 0px 10px; width: 811px; height: 100px;
+  }

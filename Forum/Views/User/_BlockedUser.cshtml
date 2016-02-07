@@ -1,0 +1,32 @@
+﻿@model Forum.Models.UserBlockViewModel
+
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div id="blockUser" class="modal fade" role="dialog">
+    @using (Html.BeginForm("BlockUser", "User"))
+    { 
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-error" })
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Заблокировать</h4>
+            </div>
+            <div class="modal-body">
+                @Html.DropDownListFor(model => model.UserBlockId, new SelectList(Model.Users, "Id","Login"))
+                @Html.ValidationMessageFor(m => m.UserBlockId, null, new { @class = "text-error" })
+                
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-default" value="Заблокировать" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+    }
+</div>
